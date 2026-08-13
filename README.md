@@ -1,3 +1,6 @@
+Carl's current preference
+A, B, G, H, C, D, F, E
+
 # Stanislaus Humanists — Header Concepts
 
 Draft header/hero images for **stanislaus-humanists.org**, built around the site's quote:

@@ -1,0 +1,241 @@
+/* Shared styles for mockup-A.html … mockup-H.html.
+   Edit here once and every concept page picks it up.
+
+   Fonts, colors, type sizes, nav pills and the welcome copy are lifted from
+   the real app (klequis/sh-brief: styles/tokens.css, styles/global.css,
+   components/layout/Header.module.css, components/sections/Home/Home.tsx).
+   The nav is deliberately slimmed to pills only — the banner already carries
+   the logo, org name and "science · art · compassion", so repeating the brand
+   in the bar underneath it would be saying it twice.
+
+   Paths below are relative to this file, i.e. to mockup-assets/. */
+
+/* --- fonts (copied from the real app's assets) ------------------------- */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ubuntu-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/ubuntu-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/ubuntu-700.woff2') format('woff2');
+}
+
+/* --- tokens (from tokens.css) ----------------------------------------- */
+:root {
+  --color-primary: #206699;
+  --color-primary-hover: #5bc7ff;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f4f4f4;
+  --color-text: #333333;
+  --color-text-muted: #666666;
+  --color-text-inverse: #ffffff;
+
+  --font-body: 'Ubuntu', Arial, Helvetica, sans-serif;
+
+  /* Shorter than the real 96px: the bar is pills only here, no brand block. */
+  --header-min-height: 56px;
+  --header-height: 56px;
+  --content-max-width: 1100px;
+  --section-padding-y: 4rem;
+  --section-padding-x: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --section-padding-x: 1rem;
+    --section-padding-y: 2rem;
+  }
+}
+
+/* --- base (from global.css) ------------------------------------------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 { font-family: var(--font-body); }
+
+.section h1 {
+  color: var(--color-primary);
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+h2 { color: var(--color-text); font-weight: 500; font-size: 28px; }
+h3 { color: var(--color-text); font-weight: 300; font-size: 22px; }
+
+a { color: var(--color-primary); }
+a:hover { color: var(--color-primary-hover); }
+
+.section {
+  width: 100%;
+  padding: var(--section-padding-y) var(--section-padding-x);
+  scroll-margin-top: var(--header-height);
+}
+
+.section--alt { background: var(--color-bg-alt); }
+
+.container {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.section > .container:first-child > :first-child { margin-block-start: 0; }
+
+/* --- banner ------------------------------------------------------------ */
+/* Sits above the sticky bar and scrolls away with the page. The source
+   images are 1600x560; width:100% lets them scale with the viewport, so on
+   a display wider than 1600px they upscale a little. A real implementation
+   would export at 2x and probably ship a taller crop for phones — at 400px
+   wide the quote in these renders around 9px. */
+.banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Kills the inline-image baseline gap under the picture. */
+  vertical-align: bottom;
+}
+
+/* --- sticky nav (pills from Header.module.css) ------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: var(--header-min-height);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-bg-alt);
+}
+
+.header-inner {
+  min-height: var(--header-min-height);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--section-padding-x);
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 0.5rem;
+  padding-block: 3px;
+}
+
+.nav a {
+  flex: none;
+  padding: 7px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--color-primary);
+  font-size: 17px;
+}
+
+.nav a:hover { color: var(--color-primary-hover); }
+
+.nav a.active,
+.nav a.active:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .nav { gap: 0.375rem; }
+  .nav a { padding: 5px 10px; font-size: 14px; }
+}
+
+/* --- mockup-only chrome ------------------------------------------------ */
+/* Not part of the design. Comparing eight near-identical windows side by
+   side, the thing you most need is to know which one you're looking at
+   without hunting — hence the label bar. Delete <p class="mockup-note"> from
+   a page (or hide it here) to screenshot that page clean. */
+.mockup-note {
+  margin: 0;
+  padding: 6px var(--section-padding-x);
+  background: #fffbe6;
+  border-bottom: 1px solid #f0e3a8;
+  color: #6b5b12;
+  font-size: 13px;
+}
+
+.mockup-note .letter {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.mockup-note nav {
+  float: right;
+  color: #b8a86a;
+}
+
+.mockup-note nav a {
+  color: #6b5b12;
+  text-decoration: none;
+  padding-inline: 2px;
+}
+
+.mockup-note nav a:hover { text-decoration: underline; }
+
+.mockup-note nav a[aria-current='page'] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* --- index page (mockup.html) ------------------------------------------ */
+.index-wrap {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding: 2.5rem var(--section-padding-x) 4rem;
+}
+
+.index-wrap h1 {
+  color: var(--color-primary);
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 1.1;
+  margin-block-start: 0;
+}
+
+.index-list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.index-list a.thumb {
+  display: block;
+  border: 1px solid var(--color-bg-alt);
+  line-height: 0;
+}
+
+.index-list a.thumb img { width: 100%; height: auto; }
+
+.index-list h2 { margin: 0.6rem 0 0.2rem; font-size: 22px; }
+
+.index-list p { margin: 0; color: var(--color-text-muted); font-size: 16px; }
